@@ -1,0 +1,17 @@
+{
+  "name": "odpady-komunalne-tczew",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
+    "husky": "^8.0.3"
+  }
+}
