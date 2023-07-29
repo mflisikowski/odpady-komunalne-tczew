@@ -1,3 +1,4 @@
+import { scrapper } from "./scrapper";
 import express from "express";
 import cors from "cors";
 
@@ -7,7 +8,8 @@ const port = 3001;
 app.use(cors());
 
 app.get("/api/data", async (req: any, res: any) => {
-  res.json({});
+  const data: any = await scrapper();
+  res.json(data);
 });
 
 app.listen(port, () => {
