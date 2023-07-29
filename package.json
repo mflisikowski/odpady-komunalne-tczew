@@ -11,12 +11,10 @@
   },
   "scripts": {
     "backend:build": "yarn workspace backend build",
-    "frontend:start": "yarn workspace frontend start",
-    "backend:start": "yarn workspace backend start",
     "frontend:dev": "yarn workspace frontend dev",
     "backend:dev": "yarn workspace backend dev",
-    "start:dev": "concurrently \"yarn backend:dev\" \"yarn frontend:dev\"",
-    "start": "concurrently \"yarn backend:start\" \"yarn frontend:start\""
+    "build": "concurrently \"yarn backend:build\" \"yarn frontend:build\"",
+    "dev": "concurrently \"yarn backend:dev\" \"yarn frontend:dev\""
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
