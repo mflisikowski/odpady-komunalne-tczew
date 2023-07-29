@@ -9,9 +9,19 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
+  "scripts": {
+    "backend:build": "yarn workspace backend build",
+    "frontend:start": "yarn workspace frontend start",
+    "backend:start": "yarn workspace backend start",
+    "frontend:dev": "yarn workspace frontend dev",
+    "backend:dev": "yarn workspace backend dev",
+    "start:dev": "concurrently \"yarn backend:dev\" \"yarn frontend:dev\"",
+    "start": "concurrently \"yarn backend:start\" \"yarn frontend:start\""
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
+    "concurrently": "^8.2.0",
     "husky": "^8.0.3"
   }
 }
