@@ -149,13 +149,30 @@ const mixedData = async () => {
   return parseMixedDetails($);
 };
 
+const groupByWasteType = (wasteData: any[]) => {
+  const grouped: { [key: string]: any[] } = {};
+
+  wasteData.forEach((item) => {
+    const key = item.waste;
+    if (!grouped[key]) {
+      grouped[key] = [];
+    }
+    grouped[key].push(item);
+  });
+
+  return grouped;
+};
+
 export const scrapper = async () => {
   const selective = await selectiveData();
   const metadata = await metadataData();
   const mixed = await mixedData();
 
+  const combinedWaste = [...selective, ...mixed];
+  const groupedWaste = groupByWasteType(combinedWaste);
+
   return {
     metadata,
-    waste: [...selective, ...mixed],
+    waste: groupedWaste,
   };
 };
