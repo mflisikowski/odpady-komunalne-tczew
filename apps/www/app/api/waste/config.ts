@@ -27,10 +27,3 @@ export const defaultQuery = {
   days: defaultDays,
 };
 
-export default {
-  queryBaseURL,
-  defaultQuery,
-  dateOptions,
-  dateLocale,
-  paths,
-};

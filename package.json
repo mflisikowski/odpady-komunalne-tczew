@@ -2,7 +2,7 @@
   "name": "odpady-komunalne-tczew",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "apps/*"
   ],
   "husky": {
     "hooks": {
@@ -10,19 +10,15 @@
     }
   },
   "scripts": {
-    "backend:build": "yarn workspace backend build",
-    "backend:dev": "yarn workspace backend dev",
-    "frontend:build": "yarn workspace frontend build",
-    "frontend:dev": "yarn workspace frontend dev",
-    "backend:start": "yarn workspace backend start",
-    "frontend:start": "yarn workspace frontend start",
-    "start": "concurrently \"yarn backend:start\" \"yarn frontend:start\"",
-    "build": "concurrently \"yarn backend:build\" \"yarn frontend:build\"",
-    "dev": "concurrently \"yarn backend:dev\" \"yarn frontend:dev\""
+    "build": "yarn workspace www build",
+    "start": "yarn workspace www start",
+    "dev": "yarn workspace www dev"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12",
     "concurrently": "^8.2.0",
     "husky": "^8.0.3"
   }
