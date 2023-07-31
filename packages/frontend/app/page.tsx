@@ -1,13 +1,13 @@
-import StackedLists from "../components/stacked-lists";
+// import StackedLists from "../components/stacked-lists";
 
-async function getData() {
-  const response = await fetch("http://localhost:3001/api/data");
+// async function getData() {
+//   const response = await fetch("http://localhost:3001/api/data");
 
-  return response.json();
-}
+//   return response.json();
+// }
 
 export default async function Page() {
-  const data = await getData();
+  // const data = await getData();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
@@ -18,7 +18,7 @@ export default async function Page() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center w-full h-full space-y-14 ">
-        <StackedLists wasteSchedule={data.waste} />
+        {/* <StackedLists wasteSchedule={data.waste} /> */}
       </div>
     </main>
   );
