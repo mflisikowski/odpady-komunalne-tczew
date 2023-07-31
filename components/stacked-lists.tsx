@@ -11,23 +11,18 @@ export default function StackedLists({
   wasteSchedule: wasteScheduleProps;
 }) {
   return (
-    <nav className="h-full overflow-y-auto w-full">
+    <nav>
       {Object.keys(wasteSchedule).map((wasteType) => (
         <div key={wasteType} className="relative" stacked-list-for-waste>
-          <div className="sticky top-0 z-10 bg-white-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white">
-            <h3>{wasteType}</h3>
+          <div className="sticky top-0 z-10 bg-white text-base font-extrabold leading-6 text-slate-900 py-3 px-2 uppercase">
+            {wasteType}
           </div>
-          <ul role="list" className="divide-y divide-dashed">
+          <ul role="list" className="divide-y divide-dashed divide-slate-700 ">
             {wasteSchedule[wasteType].map((waste) => (
               <li key={waste.date} className="flex gap-x-4 px-3 py-5">
-                <div className="min-w-0">
-                  <p className="text-base font-semibold leading-6 text-gray-900">
-                    {waste.name}
-                  </p>
-                  <p className="mt-1 truncate text-md leading-5 text-gray-500">
-                    {waste.date}
-                  </p>
-                </div>
+                <p className="mt-1 truncate text-md leading-5 text-white inline-flex font-normal">
+                  - {waste.date}
+                </p>
               </li>
             ))}
           </ul>
