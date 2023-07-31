@@ -10,5 +10,8 @@ export async function getWasteData() {
     notFound();
   }
 
-  return data;
+  return {
+    metadata: data.metadata,
+    waste: data.waste,
+  };
 }
