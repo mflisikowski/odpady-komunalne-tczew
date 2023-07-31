@@ -17,7 +17,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "packages/frontend/$1"
+            "dest": "packages/frontend/output/$1"
         }
     ]
 }
