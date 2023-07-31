@@ -20,7 +20,7 @@ export const defaultStreet = {
   id: "b3f753",
 };
 
-export const defaultDays: string = "15";
+export const defaultDays: string = "64";
 
 export const defaultQuery = {
   street: defaultStreet.id,
