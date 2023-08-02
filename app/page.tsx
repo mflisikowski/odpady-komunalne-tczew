@@ -1,5 +1,5 @@
 import StackedLists from "@/components/stacked-lists";
-import { getWasteData } from "./api/waste";
+import { getWasteData } from "@/app/api/waste"
 
 export default async function Page() {
   const { waste } = await getWasteData();

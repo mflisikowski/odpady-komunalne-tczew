@@ -13,7 +13,7 @@ export default function StackedLists({
   return (
     <nav>
       {Object.keys(wasteSchedule).map((wasteType) => (
-        <div key={wasteType} className="relative" stacked-list-for-waste>
+        <div key={wasteType} className="relative">
           <div className="sticky top-0 z-10 bg-white text-base font-extrabold leading-6 text-slate-900 py-3 px-2 uppercase">
             {wasteType}
           </div>
