@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { scrapper } from "./scrapper";
+import { scrapper } from "../../../lib/scrapper";
 
 import 'server-only';
 
