@@ -1,23 +1,23 @@
 import ChooseForm from "@/components/choose-form";
 
-async function fetchStreets() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/waste/streets`, {
-    next: {
-      revalidate: 60 * 60 * 24, // 24 hours
-    }
-  });
-  const { streets } = await response.json();
+// async function fetchStreets() {
+//   const response = await fetch(`http://localhost:3000/api/waste/streets`, {
+//     next: {
+//       revalidate: 60 * 60 * 24, // 24 hours
+//     }
+//   });
+//   const { streets } = await response.json();
 
-  if (!response.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch streets data from API');
-  }
+//   if (!response.ok) {
+//     // This will activate the closest `error.js` Error Boundary
+//     throw new Error('Failed to fetch streets data from API');
+//   }
 
-  return streets;
-}
+//   return streets || [];
+// }
 
 export default async function Page() {
-  const streets = await fetchStreets();
+  // const streets = await fetchStreets();
 
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -31,7 +31,7 @@ export default async function Page() {
         </p>
       </header>
 
-      <ChooseForm streets={streets} />
+      {/* <ChooseForm streets={streets} /> */}
     </div>
   )
 }
