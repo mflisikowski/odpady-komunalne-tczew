@@ -3,7 +3,7 @@ import StackedLists from "@/components/stacked-lists";
 import SwitchData from "@/components/switch-data";
 
 export default async function Page() {
-  const response = await fetch("http://localhost:3000/api/waste/selective", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/waste/selective`, {
     next: {
       revalidate: 60 * 60 * 24, // 24 hours
     }

@@ -1,7 +1,7 @@
 import ChooseForm from "@/components/choose-form";
 
 async function fetchStreets() {
-  const response = await fetch("http://localhost:3000/api/waste/streets", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/waste/streets`, {
     next: {
       revalidate: 60 * 60 * 24, // 24 hours
     }
