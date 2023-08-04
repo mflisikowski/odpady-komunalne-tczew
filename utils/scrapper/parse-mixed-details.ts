@@ -30,7 +30,7 @@ export const parseMixedDetails = ($: cheerio.CheerioAPI) => {
     if (!matchesSelector) {
       const dateText = $(tr).text().trim();
       const date = dateText
-        ? dateText.match(/\d{2}\.\d{2}\.\d{4}/g).join("-")
+        ? (dateText.match(/\d{2}\.\d{2}\.\d{4}/g) || []).join("-")
         : null;
 
       details.push({
