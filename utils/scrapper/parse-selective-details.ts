@@ -1,7 +1,8 @@
 import { wasteTypesMapping } from "@/config";
+import * as cheerio from "cheerio";
 
-export const parseSelectiveDetails = ($: any) => {
-  let details: { waste: any; date: any }[] = [];
+export const parseSelectiveDetails = ($: cheerio.CheerioAPI) => {
+  let details: { type: any; date: any }[] = [];
   const $TRs = $("table tr");
 
   $TRs.each((index: any, tr: any) => {
@@ -26,11 +27,11 @@ export const parseSelectiveDetails = ($: any) => {
       const wasteText = smallTexts.find(
         (text) => wasteTypesMapping[text] !== undefined
       );
-      const waste = wasteText ? wasteTypesMapping[wasteText] : null;
+      const type = wasteText ? wasteTypesMapping[wasteText] : null;
 
       if (date || waste) {
         details.push({
-          waste,
+          type,
           date,
         });
       }

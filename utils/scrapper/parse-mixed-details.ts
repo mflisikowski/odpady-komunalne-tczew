@@ -1,10 +1,11 @@
 import { wasteTypesMapping } from "@/config";
+import * as cheerio from "cheerio";
 
-export const parseMixedDetails = ($: any) => {
+export const parseMixedDetails = ($: cheerio.CheerioAPI) => {
   const $Scripts = $("table script");
 
   let selectors: any[] = [];
-  let details: { waste: any; date: any }[] = [];
+  let details: { type: any; date: any }[] = [];
 
   $Scripts.each((index: any, script: any) => {
     const scriptText = $(script).text().trim();
@@ -33,7 +34,7 @@ export const parseMixedDetails = ($: any) => {
         : null;
 
       details.push({
-        waste: wasteTypesMapping.ZMIESZANE,
+        type: wasteTypesMapping.ZMIESZANE,
         date,
       });
     }
