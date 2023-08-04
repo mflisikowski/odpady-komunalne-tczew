@@ -29,7 +29,7 @@ export const parseSelectiveDetails = ($: cheerio.CheerioAPI) => {
       );
       const type = wasteText ? wasteTypesMapping[wasteText] : null;
 
-      if (date || waste) {
+      if (date || type) {
         details.push({
           type,
           date,
