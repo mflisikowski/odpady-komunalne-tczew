@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from 'next/navigation'
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'
 
 interface Street {
     name: string;
@@ -26,11 +26,6 @@ export default function ChooseForm({ streets }: ChooseFormProps) {
         return `/${type}?street=${street}&type=${type}`;
     }
 
-    const updateLocalStorage = () => {
-        localStorage.setItem('lastSelectedStreet', street);
-        localStorage.setItem('lastSelectedType', type);
-    }
-
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (['selective', 'mixed'].includes(type)) {
@@ -39,6 +34,11 @@ export default function ChooseForm({ streets }: ChooseFormProps) {
     };
 
     useEffect(() => {
+        const updateLocalStorage = () => {
+            localStorage.setItem('lastSelectedStreet', street);
+            localStorage.setItem('lastSelectedType', type);
+        }
+
         updateLocalStorage();
     }, [type, street]);
 
@@ -73,15 +73,16 @@ export default function ChooseForm({ streets }: ChooseFormProps) {
                     id="street"
                 >
                     <option>Wszystkie</option>
-                    {streets.map((street: any) => (
+                    {streets.length > 0 ? streets.map((street: any) => (
                         <option key={street.id} value={street.id}>{street.name}</option>
-                    ))}
+                    )) : <option>Brak ulic</option>}
                 </select>
             </div>
 
             <div className="flex flex-col w-auto">
                 <button
                     className="rounded-md bg-slate-900 px-3 py-2 max-h-fit text-sm font-semibold text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600 w-64 h-fit"
+                    disabled={streets.length > 0 ? false : true}
                     type="submit"
                 >
                     Szukaj
