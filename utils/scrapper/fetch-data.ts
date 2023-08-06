@@ -1,9 +1,16 @@
-import { fetchHTML } from "@/utils/scrapper/fetch-html";
 import { load } from "cheerio";
+
+export const revalidate = 60 * 60 * 6; // 24 hours
 
 export const fetchData = async (url: string, parser: any) => {
   try {
-    const html = await fetchHTML(url);
+    const response = await fetch(url, {
+      next: {
+        revalidate,
+      },
+    });
+
+    const html = await response.text();
     let $ = load(html);
     return parser($);
   } catch (error) {
