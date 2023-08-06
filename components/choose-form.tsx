@@ -13,6 +13,7 @@ interface ChooseFormProps {
 }
 
 export default function ChooseForm({ streets }: ChooseFormProps) {
+    const [disabledSearch, setDisabledSearch] = useState(false);
     const [street, setStreet] = useState("");
     const [type, setType] = useState("");
     const router = useRouter();
@@ -21,6 +22,14 @@ export default function ChooseForm({ streets }: ChooseFormProps) {
         setStreet(localStorage.getItem('lastSelectedStreet') || "");
         setType(localStorage.getItem('lastSelectedType') || "");
     }, []);
+
+    useEffect(() => {
+        if (type === "" || street === "") {
+            setDisabledSearch(true);
+        } else {
+            setDisabledSearch(false);
+        }
+    }, [type, street]);
 
     const getUrl = (type: string, street: string) => {
         return `/${type}?street=${street}&type=${type}`;
@@ -55,7 +64,7 @@ export default function ChooseForm({ streets }: ChooseFormProps) {
                     name="type"
                     id="type"
                 >
-                    <option>Wszystkie</option>
+                    <option value="">Wybierz rodzaj</option>
                     <option value={'selective'}>Selektywne</option>
                     <option value={'mixed'}>Zmieszane</option>
                 </select>
@@ -72,7 +81,7 @@ export default function ChooseForm({ streets }: ChooseFormProps) {
                     name="street"
                     id="street"
                 >
-                    <option>Wszystkie</option>
+                    <option value="">Wybierz ulicę</option>
                     {streets.length > 0 ? streets.map((street: any) => (
                         <option key={street.id} value={street.id}>{street.name}</option>
                     )) : <option>Brak ulic</option>}
@@ -81,12 +90,13 @@ export default function ChooseForm({ streets }: ChooseFormProps) {
 
             <div className="flex flex-col w-auto">
                 <button
-                    className="rounded-md bg-slate-900 px-3 py-2 max-h-fit text-sm font-semibold text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600 w-64 h-fit"
-                    disabled={streets.length > 0 ? false : true}
+                    className={`rounded-md px-3 py-2 max-h-fit text-sm font-semibold text-white shadow-sm w-64 h-fit ${disabledSearch ? 'bg-gray-500 cursor-not-allowed' : 'bg-slate-900 hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600'}`}
+                    disabled={disabledSearch}
                     type="submit"
                 >
                     Szukaj
                 </button>
+
             </div>
         </form>
     )
