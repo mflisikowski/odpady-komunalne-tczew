@@ -82,9 +82,9 @@ export default function ChooseForm({ streets }: ChooseFormProps) {
                     id="street"
                 >
                     <option value="">Wybierz ulicę</option>
-                    {streets.length > 0 ? streets.map((street: any) => (
+                    {streets.length > 0 && streets.map((street: any) => (
                         <option key={street.id} value={street.id}>{street.name}</option>
-                    )) : <option>Brak ulic</option>}
+                    ))}
                 </select>
             </div>
 
