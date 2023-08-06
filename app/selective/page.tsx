@@ -55,7 +55,7 @@ export default async function Page() {
           </header>
 
           {!error && data?.waste?.selective && (
-            <div className=" max-h-96 overflow-scroll">
+            <div className=" max-h-96">
               <StackedLists wasteSchedule={selective} />
             </div>
           )}

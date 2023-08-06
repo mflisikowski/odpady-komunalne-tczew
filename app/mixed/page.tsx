@@ -54,7 +54,7 @@ export default async function Page() {
 
           <Suspense fallback={<p>Trwa ładowanie danych...</p>}>
             {!error && data?.waste?.mixed && (
-              <div className="max-h-96 overflow-scroll">
+              <div className="max-h-96">
                 <StackedLists wasteSchedule={mixed} />
               </div>
             )}
