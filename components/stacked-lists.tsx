@@ -1,3 +1,4 @@
+import { daysUntil } from "@/utils/days-until";
 
 export default function StackedLists({
   wasteSchedule: wasteSchedule,
@@ -14,9 +15,10 @@ export default function StackedLists({
           <ul role="list" className="divide-y divide-dashed divide-slate-700 ">
             {wasteSchedule[wasteType].map((waste: any) => (
               <li key={waste.date} className="flex gap-x-4 px-3 py-5">
-                <p className="mt-1 truncate text-md leading-5 text-slate-900 inline-flex font-normal">
-                  - {waste.date}
-                </p>
+                <div className="flex items-center justify-between w-full">
+                  <span className="mt-1 truncate text-md leading-5 text-slate-900 font-normal">{waste.date}</span>
+                  <span className="mt-1 truncate text-md leading-5 text-slate-900 font-normal">za {daysUntil(waste.date)} dni</span>
+                </div>
               </li>
             ))}
           </ul>
