@@ -2,11 +2,14 @@ import { groupByWasteType } from "@/utils/scrapper/group-waste";
 import StackedLists from "@/components/stacked-lists";
 import SwitchData from "@/components/switch-data";
 import fetcher from "@/utils/fetcher";
+import { Suspense } from "react";
+
+export const revalidate = 60 * 60 * 6;
 
 export default async function Page() {
   const { error, data } = await fetcher("/api/waste/selective", {
     next: {
-      revalidate: 60 * 60 * 6,
+      revalidate
     }
   });
 
@@ -42,11 +45,13 @@ export default async function Page() {
               </p>
             )}
 
-            {!error && data?.waste?.selective && (
-              <div className="flex justify-center">
-                <SwitchData />
-              </div>
-            )}
+            <Suspense fallback={<p>Trwa ładowanie danych...</p>}>
+              {!error && data?.waste?.selective && (
+                <div className="flex justify-center">
+                  <SwitchData />
+                </div>
+              )}
+            </Suspense>
           </header>
 
           {!error && data?.waste?.selective && (

@@ -2,11 +2,14 @@ import { groupByWasteType } from "@/utils/scrapper/group-waste";
 import StackedLists from "@/components/stacked-lists";
 import SwitchData from "@/components/switch-data";
 import fetcher from "@/utils/fetcher";
+import { Suspense } from 'react'
+
+export const revalidate = 60 * 60 * 6;
 
 export default async function Page() {
   const { error, data } = await fetcher("/api/waste/mixed", {
     next: {
-      revalidate: 60 * 60 * 6,
+      revalidate,
     }
   });
 
@@ -49,11 +52,13 @@ export default async function Page() {
             )}
           </header>
 
-          {!error && data?.waste?.mixed && (
-            <div className=" max-h-96 overflow-scroll">
-              <StackedLists wasteSchedule={mixed} />
-            </div>
-          )}
+          <Suspense fallback={<p>Trwa ładowanie danych...</p>}>
+            {!error && data?.waste?.mixed && (
+              <div className="max-h-96 overflow-scroll">
+                <StackedLists wasteSchedule={mixed} />
+              </div>
+            )}
+          </Suspense>
         </div>
       </div>
     </div>
