@@ -1,6 +1,16 @@
 import { headers } from "next/headers";
 
-async function fetcher(endpointName: string, endpointOptions?: RequestInit) {
+interface ExtendedRequestInit extends RequestInit {
+  cache?: RequestCache;
+  next?: {
+    revalidate?: number;
+  };
+}
+
+async function fetcher(
+  endpointName: string,
+  endpointOptions: ExtendedRequestInit = {}
+) {
   const defaultHostname = "localhost:3000";
   const defaultProtocol = "http";
 
@@ -8,10 +18,12 @@ async function fetcher(endpointName: string, endpointOptions?: RequestInit) {
   const hostname = headers().get("host") || defaultHostname;
 
   const defaultOptions = {
-    cache: "no-store",
+    next: {
+      revalidate: 0,
+    },
   };
 
-  const options = {
+  const options: ExtendedRequestInit = {
     ...defaultOptions,
     ...endpointOptions,
   };
