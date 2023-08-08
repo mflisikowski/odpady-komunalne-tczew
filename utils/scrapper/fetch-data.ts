@@ -1,13 +1,9 @@
 import { load } from "cheerio";
 
-export const revalidate = 60 * 60 * 6; // 24 hours
-
 export const fetchData = async (url: string, parser: any) => {
   try {
     const response = await fetch(url, {
-      next: {
-        revalidate,
-      },
+      cache: "no-store",
     });
 
     const html = await response.text();

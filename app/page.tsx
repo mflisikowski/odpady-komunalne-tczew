@@ -1,14 +1,8 @@
 import ChooseForm from "@/components/choose-form";
 import fetcher from "@/utils/fetcher";
 
-export const revalidate = 60 * 60 * 6;
-
 export default async function Page() {
-  const { error, data } = await fetcher("/api/waste/streets", {
-    next: {
-      revalidate,
-    }
-  });
+  const { error, data } = await fetcher("/api/waste/streets");
 
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-8">

@@ -4,14 +4,8 @@ import SwitchData from "@/components/switch-data";
 import fetcher from "@/utils/fetcher";
 import { Suspense } from "react";
 
-export const revalidate = 60 * 60 * 6;
-
 export default async function Page() {
-  const { error, data } = await fetcher("/api/waste/selective", {
-    next: {
-      revalidate
-    }
-  });
+  const { error, data } = await fetcher("/api/waste/selective");
 
   let selective = null;
   if (data?.waste?.selective) {

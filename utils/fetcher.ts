@@ -8,9 +8,7 @@ async function fetcher(endpointName: string, endpointOptions?: RequestInit) {
   const hostname = headers().get("host") || defaultHostname;
 
   const defaultOptions = {
-    next: {
-      revalidate: 60 * 60 * 1, // 1 hour
-    },
+    cache: "no-store",
   };
 
   const options = {
