@@ -4,10 +4,13 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Switch } from '@headlessui/react'
 
-function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-}
-
+/**
+ * A switch component that allows toggling between "selektywne" and "zmieszane" options.
+ * The state of the switch is controlled by the `enabled` variable.
+ * The switch's state can be toggled by clicking on it.
+ * The `handleSwitch` function is called when the switch is toggled.
+ * The `handleSwitch` function updates the URL query parameters based on the current state of the switch.
+ */
 export default function SwitchData() {
     const [enabled, setEnabled] = useState(false);
     const params = useSearchParams();
@@ -24,9 +27,19 @@ export default function SwitchData() {
         }
     }, [type]);
 
-    const switchType = (currentType: string) => currentType === 'mixed' ? 'selective' : 'mixed';
+    /**
+     * Toggles the current type between "mixed" and "selective".
+     * @param currentType The current type.
+     * @returns The new type.
+     */
+    const switchType = (currentType: string): string =>
+        currentType === 'mixed' ? 'selective' : 'mixed';
 
-    const handleSwitch = () => {
+    /**
+     * Handles the switch toggle event.
+     * Updates the URL query parameters based on the current state of the switch.
+     */
+    const handleSwitch = (): void => {
         if (!street || !type) return;
 
         const newType = switchType(type);
@@ -42,19 +55,13 @@ export default function SwitchData() {
             </span>
 
             <Switch
+                className={`${enabled ? 'bg-slate-600' : 'bg-gray-200'} relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-slate-600 focus:ring-offset-2`}
                 onChange={handleSwitch}
-                className={classNames(
-                    enabled ? 'bg-slate-600' : 'bg-gray-200',
-                    'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-slate-600 focus:ring-offset-2'
-                )}
                 checked={enabled}
             >
                 <span
+                    className={`${enabled ? 'translate-x-5' : 'translate-x-0'} pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
                     aria-hidden="true"
-                    className={classNames(
-                        enabled ? 'translate-x-5' : 'translate-x-0',
-                        'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
-                    )}
                 />
             </Switch>
 
@@ -64,9 +71,5 @@ export default function SwitchData() {
                 </Switch.Label>
             </span>
         </Switch.Group>
-    )
+    );
 }
-
-
-
-
