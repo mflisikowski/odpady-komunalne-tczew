@@ -16,15 +16,13 @@ export const groupByWasteType = (wasteData: WasteData[]): GroupedWasteData => {
   const groupedByWasteType: GroupedWasteData = {};
 
   wasteData.forEach((item) => {
-    const key = item.type;
+    const { type } = item;
 
-    // If there's not yet an array for this type of waste, create one
-    if (!groupedByWasteType[key]) {
-      groupedByWasteType[key] = [];
+    if (!groupedByWasteType.hasOwnProperty(type)) {
+      groupedByWasteType[type] = [];
     }
 
-    // Add this item to the array for its type of waste
-    groupedByWasteType[key].push(item);
+    groupedByWasteType[type] = [...groupedByWasteType[type], item];
   });
 
   return groupedByWasteType;
